@@ -1,7 +1,10 @@
 import React, { use, useState } from 'react'
 
+import { useEffect } from 'react';
+
 const App = () => {
 
+  
   const filmList = [
    { title: 'Inception', genre: 'Fantascienza' },
    { title: 'Il Padrino', genre: 'Thriller' },
@@ -9,11 +12,16 @@ const App = () => {
    { title: 'Batman', genre: 'Azione' },
    { title: 'Interstellar', genre: 'Fantascienza' },
    { title: 'Pulp Fiction', genre: 'Thriller' },
- ];
-
- const [choice, setChoice] = useState("")
-
- const [genre, setGenre] = useState("")
+  ];
+  
+  
+  
+  const [genre, setGenre] = useState("")
+  
+  
+  useEffect(()=>{
+    console.log("Filtraggio eseguito")
+  }, [genre])
 
   return (
 
