@@ -25,6 +25,8 @@ const App = () => {
 
   return (
 
+    <>
+
     <select onChange={(e) => setGenre(e.target.value)} >
       <option value="">Seleziona Genere</option>
       <option value={filmList.title}>Fantascienza</option>
@@ -34,7 +36,21 @@ const App = () => {
       <option value="">Fantascienza</option>
       <option value="">Thriller</option>
     </select>
-  
+
+    <div className="container">
+      <div className="row">
+        {filmList.map((film)=>{
+          
+          return (
+            <div className="col-12" key={film.genre}>
+
+
+            </div>
+          )
+        })}
+      </div>
+    </div>
+    </>
   )
 }
 
