@@ -20,11 +20,16 @@ const App = () => {
 
   const [filterFilms, setFilteredFilms] = useState(filmList)
 
-  
-  
-  useEffect(()=>{
-    console.log("Filtraggio eseguito")
+  useEffect(() => {
+    if(genre === ""){
+      setFilteredFilms(filmList)
+    }
+    else{
+      setFilteredFilms(filmList.filter(film=>film.genre === genre))
+    }
   }, [genre])
+
+
 
   return (
 
@@ -32,12 +37,11 @@ const App = () => {
 
     <select onChange={(e) => setGenre(e.target.value)} >
       <option value="">Seleziona Genere</option>
-      <option value="Fantascienza">Fantascienza</option>
+      <option value="Fantasy">Fantascienza</option>
       <option value="Thriller">Thriller</option>
-      <option value="Romantico">Romantico</option>
-      <option value="Azione">Azione</option>
-      <option value="Fantascienza">Fantascienza</option>
-      <option value="Thriller">Thriller</option>
+      <option value="Romantic">Romantico</option>
+      <option value="Action">Azione</option>
+
     </select>
 
     <div className="container">
