@@ -18,6 +18,8 @@ const App = () => {
   
   const [genre, setGenre] = useState("")
 
+  const [filterFilms, setFilteredFilms] = useState(filmList)
+
   
   
   useEffect(()=>{
