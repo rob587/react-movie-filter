@@ -19,7 +19,7 @@ const App = () => {
 
     <select onChange={(e) => setGenre(e.target.value)} >
       <option value="">Seleziona Genere</option>
-      <option value="">Fantascienza</option>
+      <option value={filmList.title}>Fantascienza</option>
       <option value="">Thriller</option>
       <option value="">Romantico</option>
       <option value="">Azione</option>
