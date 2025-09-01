@@ -17,6 +17,7 @@ const App = () => {
   
   
   const [genre, setGenre] = useState("")
+
   
   
   useEffect(()=>{
@@ -29,21 +30,23 @@ const App = () => {
 
     <select onChange={(e) => setGenre(e.target.value)} >
       <option value="">Seleziona Genere</option>
-      <option value={filmList.title}>Fantascienza</option>
-      <option value="">Thriller</option>
-      <option value="">Romantico</option>
-      <option value="">Azione</option>
-      <option value="">Fantascienza</option>
-      <option value="">Thriller</option>
+      <option value="Fantascienza">Fantascienza</option>
+      <option value="Thriller">Thriller</option>
+      <option value="Romantico">Romantico</option>
+      <option value="Azione">Azione</option>
+      <option value="Fantascienza">Fantascienza</option>
+      <option value="Thriller">Thriller</option>
     </select>
 
     <div className="container">
       <div className="row">
         {filmList.map((film)=>{
-          
+
           return (
             <div className="col-12" key={film.genre}>
-
+              
+              <h3>{film.title}</h3>
+              <p>{film.genre}</p>
 
             </div>
           )
