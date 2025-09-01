@@ -16,18 +16,28 @@ const App = () => {
   
   
   
-  const [genre, setGenre] = useState("")
+  const [genres, setGenres] = useState("")
+
+  const [newGenres, setNewGenres] = useState ("")
 
   const [filterFilms, setFilteredFilms] = useState(filmList)
 
   useEffect(() => {
-    if(genre === ""){
+    if(genres === ""){
       setFilteredFilms(filmList)
     }
     else{
-      setFilteredFilms(filmList.filter(film=>film.genre === genre))
+      setFilteredFilms(filmList.filter(film=>film.genre === genres))
     }
-  }, [genre])
+  }, [genres])
+
+    const handleForm = (e) => {
+    e.preventDefault()
+    const genre = newGenres.trim()
+   const copyGenres = [...genres, genre]
+
+   setGenres(copyGenres)
+  }
 
 
 
@@ -35,21 +45,23 @@ const App = () => {
 
     <>
 
-    <select onChange={(e) => setGenre(e.target.value)} >
+    <select className='m-4 text-center' onChange={(e) => setGenres(e.target.value)} >
       <option value="">Seleziona Genere</option>
       <option value="Fantascienza">Fantascienza</option>
       <option value="Thriller">Thriller</option>
       <option value="Romantico">Romantico</option>
       <option value="Azione">Azione</option>
-
     </select>
+
+   
 
     <div className="container">
       <div className="row">
         {filterFilms.map((film, index)=>{
 
           return (
-            <div className="col-12" key={index}>
+
+            <div className="col-4" key={index}>
               
               <h3>{film.title}</h3>
               <p>{film.genre}</p>
@@ -57,6 +69,23 @@ const App = () => {
             </div>
           )
         })}
+      </div>
+
+    </div>
+
+    <div className="container">
+      <div className="row">
+        <div className="col-12">
+          <form className="mt-5 d-flex justify-content-end" onSubmit={handleForm}>
+            <input className="p-3 fs-4" type="text"
+            value={newGenres}
+            onChange={(event)=>{
+              setNewGenres(event.target.value)
+            }}
+            />
+            <button className="ms-3 btn btn-success fs-4">Inserisci nuovo genere</button>
+          </form>
+        </div>
       </div>
     </div>
     </>
