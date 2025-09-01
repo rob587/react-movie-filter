@@ -22,6 +22,8 @@ const App = () => {
 
   const [filterFilms, setFilteredFilms] = useState(filmList)
 
+  const [customGenres, setCustomGenres] = useState ([])
+
   useEffect(() => {
     if(genres === ""){
       setFilteredFilms(filmList)
@@ -34,12 +36,12 @@ const App = () => {
     const handleForm = (e) => {
     e.preventDefault()
     const genre = newGenres.trim()
-   const copyGenres = [...genres, genre]
 
-   setGenres(copyGenres)
-  }
-
-
+      if(genre !== ""){
+        setCustomGenres([...customGenres, genre])
+        setNewGenres("")
+      }
+    }
 
   return (
 
@@ -51,6 +53,11 @@ const App = () => {
       <option value="Thriller">Thriller</option>
       <option value="Romantico">Romantico</option>
       <option value="Azione">Azione</option>
+      {customGenres.map((customGenre, index) =>  (
+          <option key={index} value={customGenre}>
+            {customGenre}
+          </option>
+      ))}
     </select>
 
    
@@ -80,16 +87,27 @@ const App = () => {
             <input className="p-3 fs-4" type="text"
             value={newGenres}
             onChange={(event)=>{
-              setNewGenres(event.target.value)
+            setNewGenres(event.target.value)
             }}
             />
             <button className="ms-3 btn btn-success fs-4">Inserisci nuovo genere</button>
           </form>
         </div>
+
+        
+        <div className="col-12">
+          <ul className='list-unstyled'>
+              {customGenres.map((g, i) => (
+                <li key={i}>{g}</li>
+                ))}
+          </ul>
+        </div>
       </div>
     </div>
+    
     </>
   )
 }
+
 
 export default App
